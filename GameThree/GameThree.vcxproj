@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="src\engine\component\parallax_component.cpp" />
     <ClCompile Include="src\engine\component\sprite_component.cpp" />
+    <ClCompile Include="src\engine\component\tilelayer_component.cpp" />
     <ClCompile Include="src\engine\component\transform_component.cpp" />
     <ClCompile Include="src\engine\core\config.cpp" />
     <ClCompile Include="src\engine\core\context.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="src\engine\component\component.h" />
     <ClInclude Include="src\engine\component\parallax_component.h" />
     <ClInclude Include="src\engine\component\sprite_component.h" />
+    <ClInclude Include="src\engine\component\tilelayer_component.h" />
     <ClInclude Include="src\engine\component\transform_component.h" />
     <ClInclude Include="src\engine\core\config.h" />
     <ClInclude Include="src\engine\core\context.h" />
