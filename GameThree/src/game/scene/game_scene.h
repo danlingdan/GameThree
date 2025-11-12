@@ -25,9 +25,13 @@ namespace game::scene {
         void clean() override;
 
     private:
+
+        // test 
+        engine::object::GameObject* test_object_ = nullptr;  ///< @brief 保存测试对象的指针，方便访问
         // 测试函数
         void createTestObject();
         void testCamera();
+        void TestObject();
     };
 
 } // namespace game::scene
