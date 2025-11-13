@@ -32,6 +32,7 @@ namespace game::scene {
         void createTestObject();
         void testCamera();
         void TestObject();
+        void TestCollisionPairs();
     };
 
 } // namespace game::scene
