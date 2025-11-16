@@ -163,6 +163,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\component\animation_component.cpp" />
     <ClCompile Include="src\engine\component\collider_component.cpp" />
     <ClCompile Include="src\engine\component\parallax_component.cpp" />
     <ClCompile Include="src\engine\component\physics_component.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="src\engine\object\game_object.cpp" />
     <ClCompile Include="src\engine\physics\collision.cpp" />
     <ClCompile Include="src\engine\physics\physics_engine.cpp" />
+    <ClCompile Include="src\engine\render\animation.cpp" />
     <ClCompile Include="src\engine\render\camera.cpp" />
     <ClCompile Include="src\engine\render\renderer.cpp" />
     <ClCompile Include="src\engine\resource\audio_manager.cpp" />
@@ -187,6 +189,7 @@
     <ClCompile Include="src\engine\scene\scene.cpp" />
     <ClCompile Include="src\engine\scene\scene_manager.cpp" />
     <ClCompile Include="src\game\component\player_component.cpp" />
+    <ClCompile Include="src\game\component\state\player_state.cpp" />
     <ClCompile Include="src\game\scene\game_scene.cpp" />
     <ClCompile Include="src\game\component\state\fall_state.cpp" />
     <ClCompile Include="src\game\component\state\idle_state.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\component\animation_component.h" />
     <ClInclude Include="src\engine\component\collider_component.h" />
     <ClInclude Include="src\engine\component\component.h" />
     <ClInclude Include="src\engine\component\parallax_component.h" />
@@ -211,6 +215,7 @@
     <ClInclude Include="src\engine\physics\collider.h" />
     <ClInclude Include="src\engine\physics\collision.h" />
     <ClInclude Include="src\engine\physics\physics_engine.h" />
+    <ClInclude Include="src\engine\render\animation.h" />
     <ClInclude Include="src\engine\render\camera.h" />
     <ClInclude Include="src\engine\render\renderer.h" />
     <ClInclude Include="src\engine\render\sprite.h" />
