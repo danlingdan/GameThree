@@ -189,6 +189,10 @@
     <ClCompile Include="src\engine\scene\level_loader.cpp" />
     <ClCompile Include="src\engine\scene\scene.cpp" />
     <ClCompile Include="src\engine\scene\scene_manager.cpp" />
+    <ClCompile Include="src\game\component\ai\jump_behavior.cpp" />
+    <ClCompile Include="src\game\component\ai\patrol_behavior.cpp" />
+    <ClCompile Include="src\game\component\ai\updown_behavior.cpp" />
+    <ClCompile Include="src\game\component\ai_component.cpp" />
     <ClCompile Include="src\game\component\player_component.cpp" />
     <ClCompile Include="src\game\component\state\dead_state.cpp" />
     <ClCompile Include="src\game\component\state\hurt_state.cpp" />
@@ -232,6 +236,11 @@
     <ClInclude Include="src\engine\scene\scene_manager.h" />
     <ClInclude Include="src\engine\utils\alignment.h" />
     <ClInclude Include="src\engine\utils\math.h" />
+    <ClInclude Include="src\game\component\ai\ai_behavior.h" />
+    <ClInclude Include="src\game\component\ai\jump_behavior.h" />
+    <ClInclude Include="src\game\component\ai\patrol_behavior.h" />
+    <ClInclude Include="src\game\component\ai\updown_behavior.h" />
+    <ClInclude Include="src\game\component\ai_component.h" />
     <ClInclude Include="src\game\component\player_component.h" />
     <ClInclude Include="src\game\component\state\dead_state.h" />
     <ClInclude Include="src\game\component\state\hurt_state.h" />
