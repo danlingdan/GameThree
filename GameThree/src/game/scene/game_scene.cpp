@@ -60,6 +60,7 @@ namespace game::scene {
 
     void GameScene::handleInput() {
         Scene::handleInput();
+        testHealth();  // 测试生命值组件
     }
 
     void GameScene::clean() {
@@ -169,6 +170,14 @@ namespace game::scene {
             }
         }
         return success;
+    }
+
+    void GameScene::testHealth()
+    {
+        auto input_manager = context_.getInputManager();
+        if (input_manager.isActionPressed("attack")) {
+            player_->getComponent<game::component::PlayerComponent>()->takeDamage(1);
+        }
     }
 
 } // namespace game::scene 
