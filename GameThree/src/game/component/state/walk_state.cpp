@@ -69,8 +69,8 @@ namespace game::component::state {
         auto max_speed = player_component_->getMaxSpeed();
         physics_component->velocity_.x = glm::clamp(physics_component->velocity_.x, -max_speed, max_speed);
 
-        // 如果下方没有碰撞，则切换到 FallState
-        if (!physics_component->hasCollidedBelow()) {
+        // 如果离地，则切换到 FallState
+        if (!player_component_->is_on_ground()) {
             return std::make_unique<FallState>(player_component_);
         }
 
