@@ -211,6 +211,23 @@ namespace engine::physics {
                     new_obj_pos.y = tile_y * layer->getTileSize().y - obj_size.y;
                     pc->velocity_.y = 0.0f;
                     pc->setCollidedBelow(true);
+                    // 如果两个角点都位于梯子上，则判断是不是处在梯子顶层
+                }
+                else if (tile_type_left == engine::component::TileType::LADDER && tile_type_right == engine::component::TileType::LADDER) {
+                    auto tile_type_up_l = layer->getTileTypeAt({ tile_x, tile_y - 1 });       // 检测左角点上方瓦片类型
+                    auto tile_type_up_r = layer->getTileTypeAt({ tile_x_right, tile_y - 1 }); // 检测右角点上方瓦片类型
+                    // 如果上方不是梯子，证明处在梯子顶层
+                    if (tile_type_up_r != engine::component::TileType::LADDER && tile_type_up_l != engine::component::TileType::LADDER) {
+                        // 通过是否使用重力来区分是否处于攀爬状态。
+                        if (pc->isUseGravity()) {   // 非攀爬状态
+                            pc->setOnTopLadder(true);       // 设置在梯子顶层标志
+                            pc->setCollidedBelow(true);     // 设置下方碰撞标志
+                            // 让物体贴着梯子顶层位置(与SOLID情况相同)
+                            new_obj_pos.y = tile_y * layer->getTileSize().y - obj_size.y;
+                            pc->velocity_.y = 0.0f;
+                        }
+                        else {}    // 攀爬状态，不做任何处理
+                    }
                 }
                 else {
                     // 检测斜坡瓦片（下方两个角点都要检测）
@@ -364,6 +381,10 @@ namespace engine::physics {
                         // 未来可以添加更多触发器类型的瓦片，目前只有 HAZARD 类型
                         if (tile_type == engine::component::TileType::HAZARD) {
                             triggers_set.insert(tile_type);     // 记录触发事件，set 保证每个瓦片类型只记录一次
+                        }
+                        // 梯子类型不必记录到事件容器，物理引擎自己处理
+                        else if (tile_type == engine::component::TileType::LADDER) {
+                            pc->setCollidedLadder(true);
                         }
                     }
                 }
