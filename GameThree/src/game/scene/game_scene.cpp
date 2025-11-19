@@ -14,6 +14,7 @@
 #include "../../engine/input/input_manager.h"
 #include "../../engine/render/camera.h"
 #include "../../engine/render/animation.h"
+#include "../../engine/audio/audio_player.h"
 #include "../component/ai_component.h"
 #include "../component/ai/patrol_behavior.h"
 #include "../component/ai/updown_behavior.h"
@@ -24,7 +25,7 @@
 namespace game::scene {
 
     // 构造函数：调用基类构造函数
-    GameScene::GameScene(std::string name, engine::core::Context& context, engine::scene::SceneManager& scene_manager)
+    GameScene::GameScene(const std::string& name, engine::core::Context& context, engine::scene::SceneManager& scene_manager)
         : Scene(name, context, scene_manager) {
         spdlog::trace("GameScene 构造完成。");
     }
@@ -51,6 +52,12 @@ namespace game::scene {
             context_.getInputManager().setShouldQuit(true);
             return;
         }
+
+        // 设置音量
+        context_.getAudioPlayer().setMusicVolume(0.2f);  // 设置背景音乐音量为20%
+        context_.getAudioPlayer().setSoundVolume(0.5f);  // 设置音效音量为50%
+        // 播放背景音乐 (循环，淡入1秒)
+        context_.getAudioPlayer().playMusic("assets/audio/hurry_up_and_run.ogg", true, 1000);
 
         Scene::init();
         spdlog::trace("GameScene 初始化完成。");
@@ -183,17 +190,17 @@ namespace game::scene {
 
             // 处理玩家与敌人的碰撞
             if (obj1->getName() == "player" && obj2->getTag() == "enemy") {
-                PlayerVSEnemyCollision(obj1, obj2);
+                playerVSEnemyCollision(obj1, obj2);
             }
             else if (obj2->getName() == "player" && obj1->getTag() == "enemy") {
-                PlayerVSEnemyCollision(obj2, obj1);
+                playerVSEnemyCollision(obj2, obj1);
             }
             // 处理玩家与道具的碰撞
             else if (obj1->getName() == "player" && obj2->getTag() == "item") {
-                PlayerVSItemCollision(obj1, obj2);
+                playerVSItemCollision(obj1, obj2);
             }
             else if (obj2->getName() == "player" && obj1->getTag() == "item") {
-                PlayerVSItemCollision(obj2, obj1);
+                playerVSItemCollision(obj2, obj1);
             }
             // 处理玩家与"hazard"对象碰撞
             else if (obj1->getName() == "player" && obj2->getTag() == "hazard") {
@@ -224,7 +231,7 @@ namespace game::scene {
         }
     }
 
-    void GameScene::PlayerVSEnemyCollision(engine::object::GameObject* player, engine::object::GameObject* enemy)
+    void GameScene::playerVSEnemyCollision(engine::object::GameObject* player, engine::object::GameObject* enemy)
     {
         // --- 踩踏判断逻辑：1. 玩家中心点在敌人上方    2. 重叠区域：overlap.x > overlap.y
         auto player_aabb = player->getComponent<engine::component::ColliderComponent>()->getWorldAABB();
@@ -249,6 +256,8 @@ namespace game::scene {
             }
             // 玩家跳起效果
             player->getComponent<engine::component::PhysicsComponent>()->velocity_.y = -300.0f;  // 向上跳起
+            // 播放音效 (此音效完全可以放在玩家的音频组件中，这里示例另一种用法：直接用AudioPlayer播放，传入文件路径)
+            context_.getAudioPlayer().playSound("assets/audio/punch2a.mp3");
         }
         // 踩踏判断失败，玩家受伤
         else {
@@ -258,7 +267,7 @@ namespace game::scene {
         }
     }
 
-    void GameScene::PlayerVSItemCollision(engine::object::GameObject* player, engine::object::GameObject* item)
+    void GameScene::playerVSItemCollision(engine::object::GameObject* player, engine::object::GameObject* item)
     {
         if (item->getName() == "fruit") {
             player->getComponent<engine::component::HealthComponent>()->heal(1);  // 加血
@@ -269,6 +278,7 @@ namespace game::scene {
         item->setNeedRemove(true);  // 标记道具为待删除状态
         auto item_aabb = item->getComponent<engine::component::ColliderComponent>()->getWorldAABB();
         createEffect(item_aabb.position + item_aabb.size / 2.0f, item->getTag());  // 创建特效
+        context_.getAudioPlayer().playSound("assets/audio/poka01.mp3");         // 播放音效
     }
 
     void GameScene::createEffect(const glm::vec2& center_pos, const std::string& tag)
