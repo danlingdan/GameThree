@@ -193,6 +193,8 @@
     <ClCompile Include="src\engine\scene\scene.cpp" />
     <ClCompile Include="src\engine\scene\scene_manager.cpp" />
     <ClCompile Include="src\engine\ui\ui_element.cpp" />
+    <ClCompile Include="src\engine\ui\ui_image.cpp" />
+    <ClCompile Include="src\engine\ui\ui_label.cpp" />
     <ClCompile Include="src\engine\ui\ui_manager.cpp" />
     <ClCompile Include="src\engine\ui\ui_panel.cpp" />
     <ClCompile Include="src\game\component\ai\jump_behavior.cpp" />
@@ -246,6 +248,8 @@
     <ClInclude Include="src\engine\scene\scene.h" />
     <ClInclude Include="src\engine\scene\scene_manager.h" />
     <ClInclude Include="src\engine\ui\ui_element.h" />
+    <ClInclude Include="src\engine\ui\ui_image.h" />
+    <ClInclude Include="src\engine\ui\ui_label.h" />
     <ClInclude Include="src\engine\ui\ui_manager.h" />
     <ClInclude Include="src\engine\ui\ui_panel.h" />
     <ClInclude Include="src\engine\utils\alignment.h" />
