@@ -217,6 +217,8 @@
     <ClCompile Include="src\game\component\state\idle_state.cpp" />
     <ClCompile Include="src\game\component\state\jump_state.cpp" />
     <ClCompile Include="src\game\component\state\walk_state.cpp" />
+    <ClCompile Include="src\game\scene\helps_scene.cpp" />
+    <ClCompile Include="src\game\scene\title_scene.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +283,8 @@
     <ClInclude Include="src\game\component\state\jump_state.h" />
     <ClInclude Include="src\game\component\state\player_state.h" />
     <ClInclude Include="src\game\component\state\walk_state.h" />
+    <ClInclude Include="src\game\scene\helps_scene.h" />
+    <ClInclude Include="src\game\scene\title_scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
