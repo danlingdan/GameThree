@@ -213,6 +213,7 @@
     <ClCompile Include="src\game\component\state\hurt_state.cpp" />
     <ClCompile Include="src\game\component\state\player_state.cpp" />
     <ClCompile Include="src\game\data\session_data.cpp" />
+    <ClCompile Include="src\game\scene\end_scene.cpp" />
     <ClCompile Include="src\game\scene\game_scene.cpp" />
     <ClCompile Include="src\game\component\state\fall_state.cpp" />
     <ClCompile Include="src\game\component\state\idle_state.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="src\game\component\state\dead_state.h" />
     <ClInclude Include="src\game\component\state\hurt_state.h" />
     <ClInclude Include="src\game\data\session_data.h" />
+    <ClInclude Include="src\game\scene\end_scene.h" />
     <ClInclude Include="src\game\scene\game_scene.h" />
     <ClInclude Include="src\game\component\state\fall_state.h" />
     <ClInclude Include="src\game\component\state\idle_state.h" />
